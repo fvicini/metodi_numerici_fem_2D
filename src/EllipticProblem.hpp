@@ -1,6 +1,8 @@
 #ifndef __EllipticProblem_H
 #define __EllipticProblem_H
 
+#include "Configurations.hpp"
+
 #include <string>
 
 namespace METODI_FEM_2D
@@ -8,9 +10,14 @@ namespace METODI_FEM_2D
   class EllipticProblem_ProgramConfiguration final
   {
     public:
-      double GeometricTolerance() const { return 1.0e-12; }
-      std::string ExportFolder() const { return "./Run"; }
-      double MeshMaximumTriangleArea() const { return 0.1; }
+      EllipticProblem_ProgramConfiguration();
+
+      inline std::string ExportFolder() const
+      { return Gedim::Configurations::GetPropertyValue<string>("ExportFolder"); }
+      inline double GeometricTolerance() const
+      { return Gedim::Configurations::GetPropertyValue<double>("GeometricTolerance"); }
+      inline double MeshMaximumTriangleArea() const
+      { return Gedim::Configurations::GetPropertyValue<double>("MeshMaximumTriangleArea"); }
   };
 
   class EllipticProblem final

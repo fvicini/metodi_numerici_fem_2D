@@ -15,6 +15,23 @@ using namespace Eigen;
 namespace METODI_FEM_2D
 {
   // ***************************************************************************
+  EllipticProblem_ProgramConfiguration::EllipticProblem_ProgramConfiguration()
+  {
+    // Export parameters
+    Gedim::Configurations::AddProperty("ExportFolder",
+                                       "./Run",
+                                       "Folder where to export data (Default: ./Export)");
+    // Geometric parameters
+    Gedim::Configurations::AddProperty("GeometricTolerance",
+                                       numeric_limits<double>::epsilon(),
+                                       "Geometric tolerance to perform 1D operations (Default: machine epsilon)");
+
+    // Mesh parameters
+    Gedim::Configurations::AddProperty("MeshMaximumTriangleArea",
+                                       0.1,
+                                       "Mesh 2D maximum triangle area (Default: 0.1)");
+  }
+  // ***************************************************************************
   EllipticProblem::EllipticProblem(const EllipticProblem_ProgramConfiguration& config) :
     config(config)
   {
